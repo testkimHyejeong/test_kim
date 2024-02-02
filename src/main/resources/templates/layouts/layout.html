@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<!-- 레이아웃 기능을 사용하기 위해 html 태그에 layout 네임 스페이스를 추가한다. -->
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<!-- head fragment -->
+<head th:replace="~{fragments/head::head}">
+</head>
+<body>
+
+	<!-- 페이지 레이아웃에서 다른 내용으로 계쏙 변경되는 영역을 설정 -->
+	<div class="container-fluid h-100">
+		<div class="row h-100">
+			<div class="col-2 bg-warning">
+				<div th:replace="~{fragments/sidebar::sidebar}" class="col-2"></div>
+			</div>
+			<div class="col-10 p-0">
+				<div th:replace="~{fragments/header::header}"></div>
+				<div layout:fragment="content" class="col-10"></div>
+				<div th:replace="~{fragments/footer::footer}"></div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

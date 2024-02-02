@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout}">
+
+<div class="container" layout:fragment="content">
+<table class="table my-5">
+  <thead>
+    <tr>
+      <th scope="col">순번</th>
+      <th scope="col"></th>
+      <th scope="col">상품명</th>
+      <th scope="col">상품설명</th>
+      <th scope="col">상품 가격</th>
+      <th scope="col">등록일</th>
+    </tr>
+  </thead>
+  <tbody>
+  <!-- if -->
+    <tr th:each="itemDto, userStat:${itemDtoList}">
+      <th scope="row" th:text="${userStat.index}+1"></th>
+      <td th:if="${userStat.even}" th:text="'인기 제품'"></td>
+      <td th:if="${userStat.odd}" th:text="|핫신상 제품|"></td>
+      <td th:text="${itemDto.itemNm}"></td>
+      <td th:text="${itemDto.itemDetail}"></td>
+      <td th:text="${itemDto.price}"></td>
+      <td th:text="${itemDto.regTime}"></td>
+    </tr>
+    
+    <tr th:each="itemDto, userStat:${itemDtoList}">
+      <th scope="row" th:text="${userStat.index}+1"></th>
+      <td th:switch=${userStat.even}>
+      <span th:case=true>완전 인기</span>
+      <span th:case=false>완전 핫 신상</span>
+      </td>
+      <td th:text="${itemDto.itemNm}"></td>
+      <td th:text="${itemDto.itemDetail}"></td>
+      <td th:text="${itemDto.price}"></td>
+      <td th:text="${itemDto.regTime}"></td>
+    </tr>
+  </tbody>
+</table>
+
+
+<h1>th:href 문법</h1>
+<a class="btn btn-primary" th:href="@{board}">게시판 페이지로 이동</a>
+<a class="btn btn-primary" th:href="@{https://www.thymeleaf.org}">타임리프 공식 홈페이지로 이동</a>
+<a class="btn btn-primary" th:href="@{login(param1='매개변수1',param2='매개변수2')}">로그인 페이지로 이동</a>
+<xmp><a th:href="'@{이동할 페이지 주소}'">게시판 페이지로 이동</a></xmp>
+
+
+</div>
+
+</html>
